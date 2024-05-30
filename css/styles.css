@@ -105,3 +105,11 @@ textarea {
     background-color: #e8f0fe;
 }
 /*********************************************************/
+
+.fail {
+    background-color: #f8d7da;
+}
+
+.fail:hover {
+    background-color: #e5c7ca;
+}
