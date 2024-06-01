@@ -2,8 +2,8 @@
 
 function conectarBD() {
   $servername = "localhost";
-  $username = "root";
-  $password = "";
+  $username = $_SESSION['User'];
+  $password = $_SESSION['authentication_string'];
   $dbname = "";
 
   $conn = new mysqli($servername, $username, $password, $dbname);

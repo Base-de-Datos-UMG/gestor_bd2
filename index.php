@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     ini_set('display_errors', 0);
     error_reporting(E_ALL);
 
@@ -7,6 +9,10 @@
     include_once "./includes/queries_default/all_querie.php";
     include_once "./includes/misc.php";
     include_once "./includes/queries_default/show_databases.php";
+    
+    if(!$_SESSION['User']){
+        header("Location: ./login.php");
+    }
 
     $conn = conectarBD();
     $bases = get_all_databases($conn);
@@ -32,6 +38,7 @@
 </head>
 <body>
     <header>
+        <a href="./login.php?logout=1" style="color: white; text-decoration: none; float: right;">LogOut: <?=$_SESSION['username']?></a>
         <h1>Base de Datos 2</h1>
         <?php if($selected_db != ''): ?><div id="selected-database"><?= $selected_db ?></div><?php endif; ?>
     </header>
@@ -97,7 +104,7 @@
                                     <tbody>
                                         <tr>
                                             <?php if($result ==1 ): ?>
-                                                <td>Query took</td>
+                                                <td>Query ejecutado con exito</td>
                                             <?php else: ?>
                                                 <td class="fail"><?= $result ?></td>
                                             <?php endif; ?>
